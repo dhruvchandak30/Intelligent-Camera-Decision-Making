@@ -5,9 +5,11 @@ from flask_socketio import SocketIO, emit
 from threading import Thread
 from flask_cors import CORS
 
+
 app = Flask(__name__)
 CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="http://localhost:3000")
+
 
 @app.route("/members", methods=["GET", "POST"])
 def members():
@@ -16,8 +18,12 @@ def members():
     elif request.method == "POST":
         data = request.get_json()
         print("Received POST request:", data)
-        emit("scissors_detected", {"members": ["Scissors Detected"]}, broadcast=True)
+        emit("scissors_detected", {"members": [
+             "Scissors Detected"]}, broadcast=True)
+        dataset_url = 'https://www.kaggle.com/username/dataset-name'
+        od.download(dataset_url)
         return {"status": "success"}
+
 
 def start_camera():
     cap = cv2.VideoCapture(0)
@@ -61,6 +67,7 @@ def start_camera():
 
     cap.release()
     cv2.destroyAllWindows()
+
 
 if __name__ == "__main__":
     camera_thread = Thread(target=start_camera)
