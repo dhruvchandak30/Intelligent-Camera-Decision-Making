@@ -16,24 +16,6 @@ The Intelligent Camera Decision-Making System is designed to process video data,
 - NumPy, Pandas, Matplotlib
 - AWS or Google Cloud Platform account (for cloud services)
 
-### Installation
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/yourusername/intelligent-camera-system.git
-
-Install dependencies:
-bash
-Copy code
-pip install -r requirements.txt
-
-
-Run the application:
-bash
-Copy code
-python main.py
-
 
 Usage
 The system provides real-time alerts for suspicious activities, incident reporting with video clips, and additional features such as traffic monitoring and people counting. Refer to the documentation for detailed usage instructions.
