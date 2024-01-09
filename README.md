@@ -20,7 +20,7 @@ The Intelligent Camera Decision-Making System is designed to process video data,
 Usage
 The system provides real-time alerts for suspicious activities, incident reporting with video clips, and additional features such as traffic monitoring and people counting. Refer to the documentation for detailed usage instructions.
 Contributors
-Krishna Khattri, 
-Dhruv Chandak, 
-Mahika Jain, 
-Harsh Batra 
+- Krishna Khattri
+- Dhruv Chandak 
+- Mahika Jain
+- Harsh Batra 
