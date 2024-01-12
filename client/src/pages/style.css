@@ -1,5 +1,6 @@
 .login-bg{
-    background-image: url(../assests/jail.png);
+    background: url(../assests/jail.png), lightgray 50%;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
 }
