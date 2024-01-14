@@ -1,14 +1,13 @@
-.login-bg{
-    background: url(../assests/jail.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+.login-bg {
+  background: url(../assests/jail.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-
-
-
-
-
-
-
+.police-bg {
+  background: url(../assests/Prison.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
