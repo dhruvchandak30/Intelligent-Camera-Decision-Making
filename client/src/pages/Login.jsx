@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import logo from "../assests/logo.svg";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
