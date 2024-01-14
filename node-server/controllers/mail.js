@@ -24,22 +24,18 @@ const mail=(req,res)=>{
     
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            console.log("came");
-            res.status(404).json({
+            res.status(500).json({
                 success: false,
                 data: error.message,
-                message: "entry UPDATED succesfully",
+                message: "error occured",
               });
           return console.error(`Error sending email: ${error.message}`);
 
         } else {
-            console.log("not came");
             res.status(200).json({
                 success: true,
-                data: message,
-                message: "entry UPDATED succesfully",
+                message: "mail sent",
               });
-              console.log("done");
         }
        
       });
