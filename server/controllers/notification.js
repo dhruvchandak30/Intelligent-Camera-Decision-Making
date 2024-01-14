@@ -5,7 +5,8 @@ require("dotenv").config();
 const accountSid = process.env.SID;
 const authToken = process.env.TOKEN;
 const twilioPhoneNumber = process.env.PHONE;
-const user=process.env.USER;
+const constable=process.env.USER;
+const SHO=process.env.SHO;
 
 const client = twilio(accountSid, authToken);
 
@@ -21,7 +22,7 @@ const notification = (req, res) => {
     .create({
       body: response.message,
       from: twilioPhoneNumber,
-      to: user
+      to: constable
     })
     .then((message) => {
       res.status(200).json({
@@ -29,6 +30,7 @@ const notification = (req, res) => {
         data: message,
         message: "entry UPDATED succesfully",
       });
+      
     })
     .catch((error) => {
       res.status(404).json({
