@@ -14,7 +14,6 @@ const mail=(req,res)=>{
       });
 
     const response=req.body
-    
     const mailOptions = {
         from: 'krishnakhattri24@gmail.com',
         to: response.to,
