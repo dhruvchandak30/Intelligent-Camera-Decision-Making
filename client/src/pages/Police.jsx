@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PoliceResponse from "../components/Police/PoliceResponse";
 import Button from "../components/Button/Button";
+import Navbar from "../components/Navbar/Navbar";
 
 const Police = () => {
   const [detectionResult, setDetectionResult] = useState(null);
@@ -35,7 +36,8 @@ const Police = () => {
   };
 
   return (
-    <div className="police h-screen">
+    <div className="homebg h-screen">
+      <Navbar/>
       <PoliceResponse
         detectionResult={detectionResult}
         data={data}
@@ -43,7 +45,6 @@ const Police = () => {
         errorDetecting={errorDetecting}
         startObjectDetection={startObjectDetection}
       />
-      <Button text="Hello" funcName="" />
     </div>
   );
 };
