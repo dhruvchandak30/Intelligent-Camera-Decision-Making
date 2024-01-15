@@ -1,6 +1,7 @@
 import React from "react";
 import Station1 from "../../assests/Station1.png";
 import Station2 from "../../assests/Station2.png";
+import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <div
@@ -19,9 +20,11 @@ const Hero = () => {
           sequi accusantium deserunt commodi! Alias.
         </div>
         <div className="flex justify-center">
-          <button className="flex items-center justify-center   px-20 py-3 m-4 font-bold text-2xl flex-shrink-0 rounded-2xl shadow-md  shadow-gray-900 bg-gray-700 hover:bg-gray-600 ">
-            Continue
-          </button>
+          <Link to="/police">
+            <button className="flex items-center justify-center   px-20 py-3 m-4 font-bold text-2xl flex-shrink-0 rounded-2xl shadow-md  shadow-gray-900 bg-gray-700 hover:bg-gray-600 ">
+              Detect Object
+            </button>
+          </Link>
         </div>
       </div>
       <div className="flex flex-col lg:w-1/4 rounded-3xl  bg-gray-500 bg-opacity-60">
@@ -36,9 +39,11 @@ const Hero = () => {
           vitae voluptatum error.
         </div>
         <div className="flex justify-center">
-          <button className="flex items-center justify-center   px-20 py-3 m-4 font-bold text-2xl flex-shrink-0 rounded-2xl shadow-md  shadow-gray-900 bg-gray-700 hover:bg-gray-600">
-            Continue
-          </button>
+          <Link to="/traffic">
+            <button className="flex items-center justify-center   px-20 py-3 m-4 font-bold text-2xl flex-shrink-0 rounded-2xl shadow-md  shadow-gray-900 bg-gray-700 hover:bg-gray-600">
+              Traffic Check
+            </button>
+          </Link>
         </div>
       </div>
     </div>

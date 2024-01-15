@@ -6,12 +6,16 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+
 class DetectionData:
     def __init__(self):
         self.detection_result = ""
         self.detection_lock = Lock()
 
+
 detection_data = DetectionData()
+detection_thread = None  # Initialize the detection thread variable globally
+
 
 @app.route('/api/data', methods=['GET'])
 def get_data():
@@ -30,15 +34,31 @@ def get_data():
 
     return jsonify(data)
 
+
 @app.route('/start-detection', methods=['POST'])
 def start_detection():
+    global detection_thread
+
     message = request.json.get('message', '')
     print(f"Received message: {message}")
 
-    detection_thread = Thread(target=detect.run_detection, args=(detection_data,))
-    detection_thread.start()
+    if message == "Start":
+        if detection_thread is None or not detection_thread.is_alive():
+            detection_thread = Thread(
+                target=detect.run_detection, args=(detection_data,))
+            detection_thread.start()
+            return jsonify({"status": "Detection started"}), 200
+        else:
+            return jsonify({"status": "Detection already running"}), 200
+    elif message == "Stop":
+        if detection_thread and detection_thread.is_alive():
+            detection_thread.join()  # Wait for the thread to finish
+            return jsonify({"status": "Detection stopped"}), 200
+        else:
+            return jsonify({"status": "No detection running"}), 200
+    else:
+        return jsonify({"status": "Invalid message"}), 400
 
-    return jsonify({"status": "Detection started"}), 200
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True)
