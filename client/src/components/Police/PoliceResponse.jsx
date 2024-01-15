@@ -8,74 +8,81 @@ const PoliceResponse = () => {
   const [errorDetecting, setErrorDetecting] = useState("");
 
   const startObjectDetection = async (mssg) => {
-    if (setCheckingRequest) {
-      setCheckingRequest(true);
-      try {
-        const response = await fetch("http://127.0.0.1:5000/start-detection", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            message: mssg,
-          }),
-        });
-
-        if (response.ok) {
-          const result = await response.json();
-          console.log(result.detection_result);
-          setDetectionResult(result.detection_result);
-        } else {
-          console.error(
-            "Failed to start object detection:",
-            response.statusText
-          );
-          setErrorDetecting("Failed to start object detection");
-          return;
-        }
-      } catch (error) {
-        console.error("Error during object detection request:", error.message);
-        setErrorDetecting("Error during object Detection");
-      }
-    } else {
-      console.log("Stopped All Cameras");
-    }
-  };
-
-  const isObjectDetected = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/data");
+      const response = await fetch("http://127.0.0.1:5000/start-detection", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: mssg,
+        }),
+      });
 
       if (response.ok) {
         const result = await response.json();
-        // console.log(result);
-        console.log(result.detection_result);
-        if (result.detection_result === data) {
-          return;
-        } else {
-          setData(result.detection_result);
-          if (result.image_data) {
-            setImageData(result.image_data);
-          }
-        }
+        console.log("Start Object Detection", result.detection_result);
+        setDetectionResult(result.detection_result);
       } else {
-        console.error("Failed to fetch data:", response.statusText);
-        setErrorDetecting("Failed to fetch Object Data");
+        console.error("Failed to start object detection:", response.statusText);
+        setErrorDetecting("Failed to start object detection");
       }
     } catch (error) {
-      console.error("Error during data fetch:", error.message);
-      setErrorDetecting("Error during data fetching");
+      console.error("Error during object detection request:", error.message);
+      setErrorDetecting("Error during object Detection");
     }
   };
 
-  const StopCameraHandler = () => {
-    setCheckingRequest(false);
-  };
-  // useEffect(() => {
-  //   // setInterval(() => {
-  //   //   isObjectDetected();
-  //   // }, 8000);
-  // }, [startCheckingRequest]);
+  // const isObjectDetected = async () => {
+  //   try {
+  //     const response = await fetch("http://127.0.0.1:5000/api/data");
+
+  //     if (response.ok) {
+  //       const result = await response.json();
+  //       console.log(result.detection_result);
+  //       if (result.detection_result === data) {
+  //         return;
+  //       } else {
+  //         setData(result.detection_result);
+  //         if (result.image_data) {
+  //           setImageData(result.image_data);
+  //         }
+  //       }
+  //     } else {
+  //       console.error("Failed to fetch data:", response.statusText);
+  //       setErrorDetecting("Failed to fetch Object Data");
+  //       return;
+  //     }
+  //   } catch (error) {
+  //     console.error("Error during data fetch:", error.message);
+  //     setErrorDetecting("Error during data fetching");
+  //     return;
+  //   }
+  // };
+
+  // const [postData, setPostData] = useState({ key: "value" });
+
+  // const handlePostRequest = async () => {
+  //   try {
+  //     console.log("Trying Posting Request");
+  //     const response = await fetch("http://localhost:3001/api/receivePost", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(postData),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not ok");
+  //     }
+
+  //     const responseData = await response.json();
+  //     console.log("POST request successful:", responseData);
+  //   } catch (error) {
+  //     console.error("Error:", error.message);
+  //   }
+  // };
 
   return (
     <div>
@@ -84,24 +91,21 @@ const PoliceResponse = () => {
           Detection Result: {detectionResult}
         </p>
       )}
+
       {data && <p className="text-black text-bold text-2xl">{data}</p>}
+
       <button
         className="text-xl border-black border-2"
-        onClick={startObjectDetection("Start")}
+        onClick={() => startObjectDetection("Start")}
       >
-        Start All Camera's
+        Start Camera
       </button>
+
       <button
         className="text-xl border-black border-2"
-        onClick={startObjectDetection("Stop")}
+        onClick={() => startObjectDetection("Stop")}
       >
-        Stop All Cameras
-      </button>
-      <button
-        className="text-xl border-black border-2"
-        onClick={isObjectDetected}
-      >
-        Check Response
+        Stop Cameras
       </button>
 
       {imageData && (
