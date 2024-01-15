@@ -1,15 +1,26 @@
 import React, { useState } from "react";
 import "./style.css";
 import logo from "../assests/logo.svg";
+import { motion } from "framer-motion"
+
 // import { Link } from "react-router-dom";
 
-const Login = ({handleSubmit}) => {
+const Login = ({ handleSubmit,isloggedin }) => {
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  // const [isAnimating, setIsAnimating] = useState(false);
 
-  const [name,setName]=useState("")
-  const [password,setPassword]=useState("")
- 
+
+
+
+  const animationProps = {
+    initial: { scale: 1 }, // Initial state
+    animate: { scale: isloggedin ? 14 : 1 }, // Animation state
+    transition: { duration: 0.5 }, // Animation duration
+  };
+
   return (
-    <div className="h-screen login-bg px-8">
+    <motion.div className="h-screen login-bg px-8 overflow-hidden" {...animationProps}>
       <div className="py-6">
         <img src={logo} alt="" />
       </div>
@@ -31,8 +42,7 @@ const Login = ({handleSubmit}) => {
             <h3 className="text-black font-inter text-3xl font-bold leading-normal">
               Sign-in
             </h3>
-            <form className="mt-4" onSubmit={handleSubmit}
->
+            <form className="mt-4" onSubmit={handleSubmit}>
               <div className="relative z-0 w-full mb-5 group">
                 <input
                   type="text"
@@ -41,9 +51,8 @@ const Login = ({handleSubmit}) => {
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none dark:text-black dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
                   placeholder=" "
                   value={name}
-                  onChange={(e)=>setName(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                   required
-                  
                 />
                 <label
                   for="name"
@@ -60,7 +69,7 @@ const Login = ({handleSubmit}) => {
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none dark:text-black dark:border-black dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-500 peer"
                   placeholder=" "
                   value={password}
-                  onChange={(e)=>setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
                 <label
@@ -80,7 +89,7 @@ const Login = ({handleSubmit}) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

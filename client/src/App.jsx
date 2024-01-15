@@ -51,7 +51,7 @@ console.log(user);
       
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/login" element={<Login handleSubmit={handleSubmit}/>} />
+        <Route path="/login" element={<Login handleSubmit={handleSubmit} isloggedin={isloggedin}/>} />
         <Route path="/police" element={<Police />} />
         <Route path="/traffic" element={<Traffic />} />
       </Routes>
