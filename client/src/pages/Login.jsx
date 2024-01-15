@@ -1,15 +1,27 @@
 import React, { useState } from "react";
 import "./style.css";
 import logo from "../assests/logo.svg";
+import { motion } from "framer-motion"
 import Button from "../components/Button/Button";
+
 // import { Link } from "react-router-dom";
 
-const Login = ({ handleSubmit }) => {
+const Login = ({ handleSubmit,isloggedin }) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  // const [isAnimating, setIsAnimating] = useState(false);
+
+
+
+
+  const animationProps = {
+    initial: { scale: 1 }, // Initial state
+    animate: { scale: isloggedin ? 14 : 1 }, // Animation state
+    transition: { duration: 0.5 }, // Animation duration
+  };
 
   return (
-    <div className="h-screen login-bg px-8">
+    <motion.div className="h-screen login-bg px-8 overflow-hidden" {...animationProps}>
       <div className="py-6">
         <img src={logo} alt="" />
       </div>
@@ -73,7 +85,7 @@ const Login = ({ handleSubmit }) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
