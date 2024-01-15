@@ -2,6 +2,7 @@ import React from "react";
 import Station1 from "../../assests/Station1.png";
 import Station2 from "../../assests/Station2.png";
 import { Link } from "react-router-dom";
+import Button from "../Button/Button";
 const Hero = () => {
   return (
     <div className="text-white flex h-screen items-center justify-around">
@@ -19,12 +20,10 @@ const Hero = () => {
             blanditiis maxime earum, totam accusamus enim!
           </p>
         </div>
-        <div className="text-center">
+        <div className="text-center flex items-center justify-center">
           <Link to="/police">
             {" "}
-            <button type="submit" className="bg-blue-500 py-2 px-4 rounded-lg">
-              Continue
-            </button>
+            <Button text="Detect" />
           </Link>{" "}
         </div>
       </div>
@@ -42,10 +41,11 @@ const Hero = () => {
             blanditiis maxime earum, totam accusamus enim!
           </p>
         </div>
-        <div className="text-center">
-          <button type="submit" className="bg-blue-500 py-2 px-4 rounded-lg">
-            Continue
-          </button>
+        <div className="text-center flex items-center justify-center">
+          <Link to="/traffic">
+            {" "}
+            <Button text="Traffic" />
+          </Link>{" "}
         </div>
       </div>
     </div>

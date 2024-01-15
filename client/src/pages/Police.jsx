@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PoliceResponse from "../components/Police/PoliceResponse";
+import Button from "../components/Button/Button";
 import Navbar from "../components/Navbar/Navbar";
 
 const Police = () => {

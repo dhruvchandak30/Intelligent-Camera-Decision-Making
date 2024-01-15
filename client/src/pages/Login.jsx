@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./style.css";
 import logo from "../assests/logo.svg";
 import { motion } from "framer-motion"
+import Button from "../components/Button/Button";
 
 // import { Link } from "react-router-dom";
 
@@ -79,12 +80,7 @@ const Login = ({ handleSubmit,isloggedin }) => {
                   Password
                 </label>
               </div>
-              <button
-                type="submit"
-                className="bg-blue-500 py-2 px-4 rounded-lg"
-              >
-                Continue
-              </button>
+              <Button text="Continue" Buttontype="submit" />
             </form>
           </div>
         </div>
