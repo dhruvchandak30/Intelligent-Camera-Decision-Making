@@ -40,26 +40,8 @@ def run_detection():
             if res.lower() in map(str.lower, words_to_match):
                 print(f"{res} matches one of the specified words.")
 
-                # Capture and encode the image
-                _, encoded_image = cv2.imencode('.png', frame)
-                base64_encoded_image = base64.b64encode(
-                    encoded_image).decode('utf-8')
-
-                # Prepare the data to be sent in the POST request
-                body = {
-                    'message': res,
-                    # 'image_data': base64_encoded_image
-                }
-
-                # Send the POST request
-                url = 'http://localhost:8000/api/receivePost'
-                response = requests.post(url, json=body)
-
-                # Check the response
-                if response.status_code == 200:
-                    print('POST request successful:', response.json())
-                else:
-                    print('Error:', response.status_code, response.text)
+                # Send the image in chunks
+                send_image_in_chunks(frame)
 
             cv2.imshow("Webcam", frame)
 
@@ -68,6 +50,32 @@ def run_detection():
 
     cap.release()
     cv2.destroyAllWindows()
+
+
+def send_image_in_chunks(image_frame):
+    # Capture and encode the image in chunks
+    chunk_size = 1024  # Adjust the chunk size as needed
+    _, encoded_image = cv2.imencode('.png', image_frame)
+
+    # Split the encoded image into chunks
+    for i in range(0, len(encoded_image), chunk_size):
+        chunk = encoded_image[i:i + chunk_size]
+        base64_encoded_chunk = base64.b64encode(chunk).decode('utf-8')
+
+        # Prepare the data to be sent in the POST request
+        body = {
+            'image_chunk': base64_encoded_chunk
+        }
+
+        # Send the POST request with the current chunk
+        url = 'http://localhost:8000/api/receiveImageChunk'
+        response = requests.post(url, json=body)
+
+        # Check the response
+        if response.status_code == 200:
+            print('Chunk sent successfully:', response.json())
+        else:
+            print('Error:', response.status_code, response.text)
 
 
 if __name__ == "__main__":
