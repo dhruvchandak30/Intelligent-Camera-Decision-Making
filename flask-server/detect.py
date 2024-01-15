@@ -32,9 +32,9 @@ def run_detection():
 
             res = model.config.id2label[predicted_class_idx]
 
-            words_to_match = ["skrewdriver", "syringe", "paperknife", "knife", "toolkit",
-                              "carpenter's kit", "cleaver", "meat cleaver", "chopper",
-                              "ignitor", "cork screw", "bottle screw", "resolver", "six-gun",
+            words_to_match = ["skrewdriver", "syringe", "paperknife", "knife", "toolkit", "drumstick", "safety pin", "chain"
+                              "carpenter's kit", "cleaver", "meat cleaver", "chopper", "rhinoceros beetle", "can opener, tin opener"
+                              "ignitor", "cork screw", "bottle screw", "resolver", "six-gun", "hook, claw"
                               "revolver, six-gun, six-shooter", "letter opener, paper knife, paperknife"]
 
             if res.lower() in map(str.lower, words_to_match):
