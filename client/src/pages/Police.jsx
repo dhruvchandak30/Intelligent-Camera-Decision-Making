@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PoliceResponse from "../components/Police/PoliceResponse";
+import Button from "../components/Button/Button";
 
 const Police = () => {
   const [detectionResult, setDetectionResult] = useState(null);
@@ -42,6 +43,7 @@ const Police = () => {
         errorDetecting={errorDetecting}
         startObjectDetection={startObjectDetection}
       />
+      <Button text="Hello" funcName="" />
     </div>
   );
 };
