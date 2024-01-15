@@ -4,7 +4,7 @@ import PoliceResponse from "../components/Police/PoliceResponse";
 const Police = () => {
   
   return (
-    <div className="police h-screen">
+    <div className="homebg h-screen">
       <PoliceResponse />
     </div>
   );
