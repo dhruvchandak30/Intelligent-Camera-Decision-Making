@@ -4,46 +4,48 @@ import Station2 from "../../assests/Station2.png";
 import { Link } from "react-router-dom";
 const Hero = () => {
   return (
-    <div
-      className="text-white flex  flex-col lg:flex-row items-center justify-around
-    "
-    >
-      <div className="flex flex-col lg:w-1/4  rounded-3xl  bg-gray-500 bg-opacity-60">
-        <div className="">
-          <img alt="Station" src={Station1} className=""></img>
+    <div className="text-white flex h-screen items-center justify-around">
+      <div className="rounded-3xl p-7 bg-gray-700 bg-opacity-55 w-[450px]">
+        <div>
+          <img src={Station1} alt="" width="100%" />
         </div>
-        <div className="text-xl px-4 font-semibold text-center">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum id dicta
-          quibusdam tempore? Saepe, rerum voluptate laborum accusamus quaerat,
-          ex porro facere aspernatur fugit, necessitatibus perferendis tenetur
-          minima iure aliquam maxime accusantium tempore! Quidem repudiandae
-          sequi accusantium deserunt commodi! Alias.
+        <div className="text-center mb-5">
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro,
+            fugit suscipit! Tempora repudiandae doloremque eius, cumque quam
+            corrupti ipsum fuga dicta praesentium nobis quas quibusdam atque non
+            maxime distinctio odit laboriosam? Ratione natus optio facere ab
+            dolorum mollitia repellendus porro vel deleniti officiis laudantium
+            blanditiis maxime earum, totam accusamus enim!
+          </p>
         </div>
-        <div className="flex justify-center">
+        <div className="text-center">
           <Link to="/police">
-            <button className="flex items-center justify-center   px-20 py-3 m-4 font-bold text-2xl flex-shrink-0 rounded-2xl shadow-md  shadow-gray-900 bg-gray-700 hover:bg-gray-600 ">
-              Detect Object
+            {" "}
+            <button type="submit" className="bg-blue-500 py-2 px-4 rounded-lg">
+              Continue
             </button>
-          </Link>
+          </Link>{" "}
         </div>
       </div>
-      <div className="flex flex-col lg:w-1/4 rounded-3xl  bg-gray-500 bg-opacity-60">
-        <div className="">
-          <img alt="Station" src={Station2} className=""></img>
+      <div className="rounded-3xl p-7 bg-gray-700 bg-opacity-55 w-[450px]">
+        <div>
+          <img src={Station2} alt="" width="100%" />
         </div>
-        <div className="text-xl px-4 font-semibold  text-center">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci
-          temporibus, ipsum velit beatae doloremque fuga pariatur sed laudantium
-          exercitationem obcaecati sequi aliquam ex quis ratione magni culpa
-          animi quo odit modi inventore rem. Itaque libero, doloribus molestias
-          vitae voluptatum error.
+        <div className="text-center mb-5">
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro,
+            fugit suscipit! Tempora repudiandae doloremque eius, cumque quam
+            corrupti ipsum fuga dicta praesentium nobis quas quibusdam atque non
+            maxime distinctio odit laboriosam? Ratione natus optio facere ab
+            dolorum mollitia repellendus porro vel deleniti officiis laudantium
+            blanditiis maxime earum, totam accusamus enim!
+          </p>
         </div>
-        <div className="flex justify-center">
-          <Link to="/traffic">
-            <button className="flex items-center justify-center   px-20 py-3 m-4 font-bold text-2xl flex-shrink-0 rounded-2xl shadow-md  shadow-gray-900 bg-gray-700 hover:bg-gray-600">
-              Traffic Check
-            </button>
-          </Link>
+        <div className="text-center">
+          <button type="submit" className="bg-blue-500 py-2 px-4 rounded-lg">
+            Continue
+          </button>
         </div>
       </div>
     </div>

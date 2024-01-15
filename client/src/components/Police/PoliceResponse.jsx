@@ -1,4 +1,8 @@
 import React from "react";
+import camera from "../../assests/camera.svg";
+import upload from "../../assests/upload.svg";
+import { IoCameraOutline } from "react-icons/io5";
+import { MdFileUpload } from "react-icons/md";
 
 const PoliceResponse = ({
   detectionResult,
@@ -8,34 +12,27 @@ const PoliceResponse = ({
   startObjectDetection,
 }) => {
   return (
-    <div>
-      {detectionResult && (
-        <p className="text-3xl text-black text-bold">
-          Detection Result: {detectionResult}
-        </p>
-      )}
-
-      <button
-        className="text-xl border-black border-2"
-        onClick={() => startObjectDetection("Start")}
-      >
-        Start Camera
-      </button>
-
-      <button
-        className="text-xl border-black border-2"
-        onClick={() => startObjectDetection("Stop")}
-      >
-        Stop Cameras
-      </button>
-
-      {/* {imageData && (
-        <img src={`data:image/png;base64,${imageData}`} alt="Detected Object" />
-      )} */}
-
-      {errorDetecting && (
-        <p className="text-black text-bold text-2xl">{errorDetecting}</p>
-      )}
+    <div className="flex justify-around px-8 items-center h-[70%]">
+      <div>
+        <div>
+          <IoCameraOutline style={{ color: "white" }} size={140} />
+        </div>
+        <div className="text-center">
+          <button type="submit" className="bg-blue-500 py-2 px-4 rounded-lg">
+            Camera{" "}
+          </button>
+        </div>
+      </div>
+      <div>
+        <div>
+        <MdFileUpload  style={{ color: "white" }} size={140} />
+        </div>
+        <div className="text-center">
+          <button type="submit" className="bg-blue-500 py-2 px-4 rounded-lg">
+            Upload{" "}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

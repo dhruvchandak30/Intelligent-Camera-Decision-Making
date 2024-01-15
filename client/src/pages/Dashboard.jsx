@@ -1,9 +1,9 @@
 import React from "react";
 import Hero from "../components/Home/Hero";
-import Navbar from "../components/Home/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 const dashboard = () => {
   return (
-    <div className="h-screen homebg">
+    <div className=" homebg">
       <Navbar />
       <Hero />
     </div>
