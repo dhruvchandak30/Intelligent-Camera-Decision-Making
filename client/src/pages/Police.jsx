@@ -9,7 +9,7 @@ const Police = () => {
   const [imageData, setImageData] = useState(null);
   const [errorDetecting, setErrorDetecting] = useState("");
 
-  const startObjectDetection = async (mssg) => {
+  const startObjectDetection = async () => {
     try {
       const response = await fetch("http://127.0.0.1:5000/start-detection", {
         method: "POST",
@@ -17,7 +17,7 @@ const Police = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: mssg,
+          message: "Start",
         }),
       });
 
@@ -37,13 +37,14 @@ const Police = () => {
 
   return (
     <div className="homebg h-screen">
-      <Navbar/>
+      <Navbar />
       <PoliceResponse
         detectionResult={detectionResult}
         data={data}
         imageData={imageData}
         errorDetecting={errorDetecting}
         startObjectDetection={startObjectDetection}
+        // startObjectDetection={startObjectDetection}
       />
     </div>
   );

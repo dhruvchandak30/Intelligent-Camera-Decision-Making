@@ -69,6 +69,8 @@ function App() {
     }, 3000);
   }, []);
 
+  console.log(detect);
+
   return loader ? (
     <PreLoader />
   ) : (
