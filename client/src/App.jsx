@@ -2,33 +2,23 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Police from "./pages/Police";
 import Traffic from "./components/Traffic/Traffic";
-import io from "socket.io-client";
 import PreLoader from "./components/preLoader/PreLoader";
-
-const socket = io.connect("http://localhost:8000");
+import { io } from "socket.io-client";
 
 function App() {
   const [loader, setLoader] = useState(true);
   const [isloggedin, setLoggedin] = useState(false);
-  const [detect, setDetect] = useState({
-    img: "",
-    title: "",
-  });
-
-  const [user, setUser] = useState({
-    name: "",
-    password: "",
-  });
-
   const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([]);
 
   const responseHandler = () => {
     if (input === "YES") {
+      // Handle positive response
     } else {
+      // Handle negative response
     }
   };
 
@@ -40,28 +30,10 @@ function App() {
     responseHandler();
   }, [input]);
 
-  const nav = useNavigate();
-
-  useEffect(() => {
-    // nav("/");
-  }, []);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const name=e.target.name.value;
-    // const password=e.target.password.value;
-    // setUser({ name , password});
     setLoggedin(true);
-    // e.target.name.value = "";
-    // e.target.password.value = "";
   };
-  console.log(user);
-
-  useEffect(() => {
-    socket.on("Data", (data) => {
-      setDetect({ img: data.img, title: data.title });
-    });
-  }, [socket]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -69,7 +41,19 @@ function App() {
     }, 3000);
   }, []);
 
-  console.log(detect);
+  useEffect(() => {
+    const socket = io("http://localhost:8000");
+
+    // Listen for the "messageFromServer" event from the server
+    socket.on("messageFromServer", (message, image_url) => {
+      console.log(message, image_url);
+      setMessages((prevMessages) => [...prevMessages, message]);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   return loader ? (
     <PreLoader />
@@ -86,6 +70,7 @@ function App() {
         <Route path="/police" element={<Police />} />
         <Route path="/traffic" element={<Traffic />} />
       </Routes>
+
     </div>
   );
 }
