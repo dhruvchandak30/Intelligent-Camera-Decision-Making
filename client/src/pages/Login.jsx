@@ -1,32 +1,66 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
+import {useNavigate} from "react-router-dom"
 import logo from "../assests/logo.svg";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import Button from "../components/Button/Button";
 
 // import { Link } from "react-router-dom";
 
-const Login = ({ handleSubmit,isloggedin }) => {
+const Login = ({ handleSubmit, isloggedin }) => {
+  const nav=useNavigate()
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   // const [isAnimating, setIsAnimating] = useState(false);
 
-
-
-
   const animationProps = {
     initial: { scale: 1 }, // Initial state
     animate: { scale: isloggedin ? 14 : 1 }, // Animation state
-    transition: { duration: 0.5 }, // Animation duration
+    transition: { duration: 0.4, delay: 0.4 }, // Animation duration
   };
 
+  const divprop1 = {
+    initial: { x: 0 },
+    animate: { x: isloggedin ? 5000 : 0 },
+    transition: { duration: 0.4 },
+  };
+  const divprop2 = {
+    initial: { x: 0 },
+    animate: { x: isloggedin ? -5000 : 0 },
+    transition: { duration: 0.4 },
+  };
+  const divprop3 = {
+    initial: { y: 0 },
+    animate: { y: isloggedin?-500:0 },
+    transition: { duration: 0.4 },
+  };
+  const scrollBarStyle = {
+    overflow: isloggedin ? "hidden" : "auto",
+    scrollbarWidth: "none",
+  };
+
+  // useEffect(()=>{
+    
+  // },[isloggedin])
+  if(isloggedin===true)
+  {
+    setTimeout(()=>{
+      nav("/")
+  },800)
+  }
+
   return (
-    <motion.div className="h-screen login-bg px-8 overflow-hidden" {...animationProps}>
-      <div className="py-6">
+    <motion.div
+      className={`h-screen login-bg px-8`}
+      {...animationProps}
+      style={scrollBarStyle}
+
+    >
+      <motion.div className="py-6" {...divprop3}>
         <img src={logo} alt="" />
-      </div>
+      </motion.div>
       <div className="flex justify-between items-center px-24 mt-10">
-        <div className="w-1/2 ">
+        <motion.div className="w-1/2 " {...divprop2}>
           <p className="text-gray-300 font-inter text-5xl font-medium leading-normal">
             A solution which{" "}
             <span className="bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 bg-clip-text text-transparent font-inter text-5xl font-medium leading-normal">
@@ -37,8 +71,8 @@ const Login = ({ handleSubmit,isloggedin }) => {
             </span>{" "}
             by connecting accident witnesses with emergency services.
           </p>
-        </div>
-        <div className="w-1/2 flex justify-end">
+        </motion.div>
+        <motion.div className="w-1/2 flex justify-end" {...divprop1}>
           <div className="rounded-3xl bg-opacity-50 bg-[#D2D2D2] w-[390px] h-[420px] px-12 py-[15%]">
             <h3 className="text-black font-inter text-3xl font-bold leading-normal">
               Sign-in
@@ -83,7 +117,7 @@ const Login = ({ handleSubmit,isloggedin }) => {
               <Button text="Continue" Buttontype="submit" />
             </form>
           </div>
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   );
