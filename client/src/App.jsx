@@ -6,9 +6,19 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Police from "./pages/Police";
 import Traffic from "./components/Traffic/Traffic";
+import io from "socket.io-client";
+import PreLoader from "./components/preLoader/PreLoader";
+
+const socket = io.connect("http://localhost:8000");
 
 function App() {
+  const [loader, setLoader] = useState(true);
   const [isloggedin, setLoggedin] = useState(false);
+  const [detect, setDetect] = useState({
+    img: "",
+    title: "",
+  });
+
   const [user, setUser] = useState({
     name: "",
     password: "",
@@ -45,13 +55,32 @@ function App() {
     // e.target.name.value = "";
     // e.target.password.value = "";
   };
-console.log(user);
-  return (
+  console.log(user);
+
+  useEffect(() => {
+    socket.on("Data", (data) => {
+      setDetect({ img: data.img, title: data.title });
+    });
+  }, [socket]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoader(false);
+    }, 3000);
+  }, []);
+
+  return loader ? (
+    <PreLoader />
+  ) : (
     <div className="">
-      
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/login" element={<Login handleSubmit={handleSubmit} isloggedin={isloggedin}/>} />
+        <Route
+          path="/login"
+          element={
+            <Login handleSubmit={handleSubmit} isloggedin={isloggedin} />
+          }
+        />
         <Route path="/police" element={<Police />} />
         <Route path="/traffic" element={<Traffic />} />
       </Routes>
