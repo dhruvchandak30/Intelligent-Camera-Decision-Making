@@ -1,7 +1,9 @@
+# app.py
 from flask import Flask, jsonify, request
 from threading import Thread, Lock
 import detect
 from flask_cors import CORS
+
 
 app = Flask(__name__)
 CORS(app)
@@ -45,9 +47,9 @@ def start_detection():
 
     if message == "Start":
         if detection_thread is None or not detection_thread.is_alive():
-            detection_thread = Thread(
-                target=detect.run_detection)
+            detection_thread = Thread(target=detect.run_detection)
             detection_thread.start()
+            print("Started")
             return jsonify({"status": "Detection started"}), 200
         else:
             return jsonify({"status": "Detection already running"}), 200

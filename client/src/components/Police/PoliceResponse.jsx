@@ -19,7 +19,7 @@ const PoliceResponse = ({
           <IoCameraOutline style={{ color: "white" }} size={140} />
         </div>
         <div className="text-center">
-          <Button text="Camera" />
+          <Button funcName={startObjectDetection} text="Camera" />
         </div>
       </div>
       <div className="flex flex-col items-center justify-center ">

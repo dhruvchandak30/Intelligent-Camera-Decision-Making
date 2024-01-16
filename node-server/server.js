@@ -17,26 +17,38 @@ app.use(bodyParser.json({ limit: "200mb" }));
 app.use(bodyParser.urlencoded({ limit: "200mb", extended: true }));
 
 // app.post("/api/receivePost", (req, res) => {
-//   const receivedData = req.body.message;
+// const receivedData = req.body.message
 
 //   console.log("Received This from Python:", receivedData);
 //   res.json({
 //     message: `Post Request Received on the server ${receivedData}`,
 //   });
 // });
+
+// app.post("/api/receiveImageChunk", (req, res) => {
+//   const receivedImageChunk = req.body.image_chunk;
+//   const ObjectResult = req.body.result;
+//   console.log(ObjectResult);
+
+//   // Decode the base64-encoded chunk
+//   const imageChunkBuffer = Buffer.from(receivedImageChunk, "base64");
+
+//   // Append the chunk to the file (assuming the file is created earlier)
+//   fs.appendFileSync("Hello.png", imageChunkBuffer, "base64");
+
+//   console.log("Image chunk received and saved.");
+
+//   res.json({
+//     message: "Image chunk received on the server",
+//   });
+// });
+
 app.post("/api/receiveImageChunk", (req, res) => {
-  const receivedImageChunk = req.body.image_chunk;
-
-  // Decode the base64-encoded chunk
-  const imageChunkBuffer = Buffer.from(receivedImageChunk, "base64");
-
-  // Append the chunk to the file (assuming the file is created earlier)
-  fs.appendFileSync("received_image1.png", imageChunkBuffer, "base64");
-
+  console.log(req.body.image_url, req.body.result);
   console.log("Image chunk received and saved.");
 
   res.json({
-    message: "Image chunk received on the server",
+    message: "Image  received on the server",
   });
 });
 
