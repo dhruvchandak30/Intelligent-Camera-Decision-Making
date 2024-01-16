@@ -18,3 +18,8 @@
   background-position: center;
   background-size: cover;
 }
+/* 
+body {
+  overflow: hidden;
+  scrollbar-width: none;
+} */

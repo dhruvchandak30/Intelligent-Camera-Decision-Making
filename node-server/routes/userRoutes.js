@@ -6,5 +6,7 @@ const router = express.Router();
 
 router.post('/sendNotification',notification)
 router.post('/sendMail',mail)
+router.post("/api/receiveImageChunk",)
+// router.get("/getDetails",)
 
 module.exports=router;
