@@ -1,4 +1,4 @@
-# detect.py
+ # detect.py
 from transformers import ViTImageProcessor, ViTForImageClassification
 from PIL import Image as img
 import cv2

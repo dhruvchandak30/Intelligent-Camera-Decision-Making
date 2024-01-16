@@ -43,9 +43,9 @@ const Police = () => {
         data={data}
         imageData={imageData}
         errorDetecting={errorDetecting}
+        startObjectDetection={startObjectDetection}
         // startObjectDetection={startObjectDetection}
       />
-      <button onClick={startObjectDetection}>Start Detection</button>
     </div>
   );
 };

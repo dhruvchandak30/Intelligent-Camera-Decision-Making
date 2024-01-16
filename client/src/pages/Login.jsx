@@ -15,7 +15,7 @@ const Login = ({ handleSubmit, isloggedin }) => {
 
   const animationProps = {
     initial: { scale: 1 }, // Initial state
-    animate: { scale: isloggedin ? 14 : 1 }, // Animation state
+    animate: { scale: isloggedin ? 16 : 1 }, // Animation state
     transition: { duration: 0.4, delay: 0.4 }, // Animation duration
   };
 
