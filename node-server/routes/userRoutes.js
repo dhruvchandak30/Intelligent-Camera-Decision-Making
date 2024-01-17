@@ -1,13 +1,13 @@
 const notification=require("../controllers/notification")
 const mail=require("../controllers/mail")
 const express=require('express')
-const loginUser=require('../controller/loginUser')
-const authRequired=require('../middlewares/authRequired')
+// const loginUser=require('../controller/loginUser')
+// const authRequired=require('../middlewares/authRequired')
 const router = express.Router();
 
 
-router.post('/login',loginUser)
-router.use(authRequired)
+// router.post('/login',loginUser)
+// router.use(authRequired)
 
 router.post('/sendNotification',notification)
 router.post('/sendMail',mail)

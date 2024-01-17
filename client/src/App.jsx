@@ -26,9 +26,10 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const name=e.target.name.value;
-    const password=e.target.password.value;
-    setUserData({name,password})
+    // const name=e.target.name.value;
+    // const password=e.target.password.value;
+    // setUserData({name,password})
+    setLoggedin(true)
   };
 
   useEffect(() => {
