@@ -33,7 +33,7 @@ const Charts = () => {
         {
           name: "Vehicles",
           type: "line",
-          data: [5, 20, 36, 10, 10, 20],
+          data: [25, 20, 30, 50, 20, 10],
           itemStyle: {
             color: "#fede48",
           },

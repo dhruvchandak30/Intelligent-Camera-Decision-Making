@@ -21,12 +21,12 @@ const PoliceResponse = ({
   const CheckActivityDetection = () => {
     console.log(count);
     if (count == 0) {
-      setActivityStatus("High Chances of Fighting, Predictions:87%");
+      setActivityStatus("High Chances of Suspicious Activity, Predictions:87%");
       count++;
       return;
     }
     if (count > 0) {
-      setActivityStatus("Very Low Chances of Fighting, Predictions:37%");
+      setActivityStatus("Low Chances of Suspicious Activity, Predictions:37%");
     }
   };
   return (
