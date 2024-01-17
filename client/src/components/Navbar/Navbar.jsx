@@ -4,7 +4,17 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import {motion} from "framer-motion"
+
+
+
 const Navbar = () => {
+  const divprop3 = {
+    initial: { y: -500 },
+    animate: { y:0},
+    transition: { duration: 0.4 },
+  };
+
   const { t, i18n } = useTranslation();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -31,7 +41,7 @@ const Navbar = () => {
   };
   return (
     <Suspense fallback="loading">
-      <div className="flex flex-row justify-between items-center">
+      <motion.div className="flex flex-row justify-between items-center" {...divprop3}>
         <div className=" px-8 items-left">
           <div className="py-6">
             <Link to="/">
@@ -141,7 +151,7 @@ const Navbar = () => {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
     </Suspense>
   );
 };

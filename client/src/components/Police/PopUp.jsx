@@ -33,7 +33,7 @@ const PopUp = ({ messages, yesHandler, status }) => {
   }, []);
 
   return (
-    <div className="rounded-3xl p-7 bg-gray-700 bg-opacity-55 w-[70%] h-[400px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex">
+    <div className="rounded-3xl p-7 bg-gray-700 bg-opacity-85 w-[70%] h-[400px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex">
       <div className="w-[30%]">
         <img src={messages.img} alt="" className="h-full rounded-lg" />
         {/* <img src={heo} alt="" className="h-full rounded-lg" /> */}
