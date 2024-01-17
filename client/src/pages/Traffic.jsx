@@ -23,12 +23,14 @@ const Traffic = () => {
     let dateString = hours + ":" + minutes;
     console.log(dateString);
   };
+  const [trafficNumber, setTrafficNumber] = useState("");
 
   useEffect(() => {
     const socket = io("http://localhost:8000");
 
     socket.on("messageFromTraffic", (number) => {
       console.log("Traffic on Server is on Traffic.jsx ", number);
+      setTrafficNumber(number);
       sendTrafficData(number);
     });
     return () => {
@@ -73,6 +75,11 @@ const Traffic = () => {
             <div className="text-center">
               <Button funcName={startObjectDetection} text="Upload" />
             </div>
+            {trafficNumber && (
+              <p className="text-white text-2xl">
+                Maximum Cars Detected:{trafficNumber}
+              </p>
+            )}
           </div>
         </div>
         <div className="mt-16 text-center text-3xl font-semibold ">
