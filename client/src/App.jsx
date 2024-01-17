@@ -11,24 +11,14 @@ import { io } from "socket.io-client";
 function App() {
   const [loader, setLoader] = useState(true);
   const [isloggedin, setLoggedin] = useState(false);
-  const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [status, setStatus] = useState(false);
+  const [messages, setMessages] = useState({
+    img: "",
+    title: "",
+  });
 
-  const responseHandler = () => {
-    if (input === "YES") {
-      // Handle positive response
-    } else {
-      // Handle negative response
-    }
-  };
-
-  const aproveHandler = (e) => {
-    setInput(e);
-  };
-
-  useEffect(() => {
-    responseHandler();
-  }, [input]);
+  const alert_message =
+    "WARNING..!! Suspicious Activity Detected. Confirm if the detected emergence is an actual emergency or not.";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,17 +33,47 @@ function App() {
 
   useEffect(() => {
     const socket = io("http://localhost:8000");
-
-    // Listen for the "messageFromServer" event from the server
     socket.on("messageFromServer", (message, image_url) => {
       console.log(message, image_url);
-      setMessages((prevMessages) => [...prevMessages, message]);
+      setMessages({
+        img: image_url,
+        title: message,
+      });
+      setStatus(true);
     });
 
     return () => {
       socket.disconnect();
     };
   }, []);
+
+  const sendNotification = async (e) => {
+    console.log("Notification Func called");
+    const temp = {
+      message: e,
+    };
+    const response = await fetch("http://localhost:8000/v1/sendNotification", {
+      method: "POST",
+      body: JSON.stringify(temp),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      console.log(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  };
+
+  // setTimeout(() => {
+  //   setStatus(true);
+  // }, 10000);
+
+  useEffect(() => {
+    if (!status) return;
+
+    sendNotification(alert_message);
+  }, [status]);
 
   return loader ? (
     <PreLoader />
@@ -67,10 +87,12 @@ function App() {
             <Login handleSubmit={handleSubmit} isloggedin={isloggedin} />
           }
         />
-        <Route path="/police" element={<Police />} />
+        <Route
+          path="/police"
+          element={<Police messages={messages} status={status} />}
+        />
         <Route path="/traffic" element={<Traffic />} />
       </Routes>
-
     </div>
   );
 }

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import PoliceResponse from "../components/Police/PoliceResponse";
 import Button from "../components/Button/Button";
 import Navbar from "../components/Navbar/Navbar";
+import PopUp from "../components/Police/PopUp";
 
-const Police = () => {
+const Police = ({status,messages}) => {
   const [detectionResult, setDetectionResult] = useState(null);
   const [data, setData] = useState("");
   const [imageData, setImageData] = useState(null);
@@ -45,7 +46,9 @@ const Police = () => {
         errorDetecting={errorDetecting}
         startObjectDetection={startObjectDetection}
         // startObjectDetection={startObjectDetection}
+      
       />
+        {true ?<PopUp messages={messages}/>:null}
     </div>
   );
 };
