@@ -1,13 +1,6 @@
 const nodemailer = require('nodemailer');
 require("dotenv").config();
 
-
-
-
-
-
-
-
 const mail=(req,res)=>{
 
     const transporter = nodemailer.createTransport({
@@ -17,8 +10,6 @@ const mail=(req,res)=>{
           pass: process.env.PASSWORD
         },
       });
-
-      
 
     const response=req.body
     console.log("hello");
