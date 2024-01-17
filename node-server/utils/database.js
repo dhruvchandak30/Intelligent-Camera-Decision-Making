@@ -1,16 +1,20 @@
-const mongoose = require('mongoose');
+const { error } = require("console");
+const mongoose  = require("mongoose");
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect('mongodb://localhost:27017/PoliceDB', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log('MongoDB connected');
-  } catch (error) {
-    console.error('MongoDB connection error:', error.message);
-    process.exit(1);
-  }
-};
+require('dotenv').config();
 
-module.exports = connectDB;
+const dbconnect=()=>{
+    mongoose.connect(process.env.DATABASE_URL,{
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        // serverSelectionTimeoutMS: 30000, // 30 seconds
+        // socketTimeoutMS: 45000, // 45 seconds
+    })
+    .then(()=>{console.log("database connected");})
+    .catch((error)=>{
+        console.log(error.message);
+        process.exit(1);
+    })
+}
+
+module.exports=dbconnect;

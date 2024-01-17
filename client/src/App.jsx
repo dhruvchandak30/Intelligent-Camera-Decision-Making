@@ -12,6 +12,10 @@ function App() {
   const [loader, setLoader] = useState(true);
   const [isloggedin, setLoggedin] = useState(false);
   const [status, setStatus] = useState(false);
+  const [userData,setUserData]=useState({
+    name:"",
+    password:""
+  })
   const [messages, setMessages] = useState({
     img: "",
     title: "",
@@ -22,7 +26,9 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoggedin(true);
+    const name=e.target.name.value;
+    const password=e.target.password.value;
+    setUserData({name,password})
   };
 
   useEffect(() => {
@@ -30,6 +36,29 @@ function App() {
       setLoader(false);
     }, 3000);
   }, []);
+
+  const passData=async()=>{
+    const response = await fetch("https://mern-crud-server1.onrender.com/user/login", {
+      method: "POST",
+      body: JSON.stringify(userData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+      if (response.ok) {
+        localStorage.setItem("user", JSON.stringify(json.data));
+        setLoggedin(true);
+      } else {
+        console.log(json.error);
+      }
+  }
+
+  useEffect(()=>{
+    if(userData.name==="" || userData.password==="")
+    return;
+      passData();
+  },[userData])
 
   useEffect(() => {
     const socket = io("http://localhost:8000");
