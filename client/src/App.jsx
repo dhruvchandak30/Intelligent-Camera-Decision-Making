@@ -120,6 +120,33 @@ function App() {
     sendNotification(alert_message);
   }, [status]);
 
+
+  const yesHandler = async (e) => {
+    let sub, cont;
+    if (e === "YES") {
+      sub = "Immediate Alert - Confirmed Suspicious Activity";
+      cont = `Dear [Higher Authority's Name],\n\nI urgently report the detection of suspicious activity by our AI surveillance system. [Monitor's Name] has verified and marked the activity as confirmed, triggering an alarm in the designated.\nPlease find the attached suspicious image. area\n\nRegards\nTechnical Team\n\nLink:${messages.img}
+        `;
+    } else {
+      sub = "Clarification - Resolved Alert on Detected Suspicious Activity";
+      cont = `"Dear [Higher Authority's Name],\n\nI wish to update you that our AI surveillance system initially detected suspicious activity. However, upon review, [Monitor's Name] has marked the activity as a false positive. No further action is required at this time\nPlease find the attached suspicious image. area\n\nRegards\nTechnical Team\n\nLink:${messages.img}`;
+    }
+    const temp = { sub: sub, cont: cont };
+    const response = await fetch("http://localhost:8000/v1/sendMail", {
+      method: "POST",
+      body: JSON.stringify(temp),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      console.log(`HTTP error! Status: ${response.status}`);
+    }
+    setStatus(false)
+    return response.json();
+  };
+
+
   return loader ? (
     <PreLoader />
   ) : (
@@ -134,7 +161,7 @@ function App() {
         />
         <Route
           path="/police"
-          element={<Police messages={messages} status={status} />}
+          element={<Police messages={messages} status={status} yesHandler={yesHandler} />}
         />
         <Route path="/traffic" element={<Traffic />} />
       </Routes>
