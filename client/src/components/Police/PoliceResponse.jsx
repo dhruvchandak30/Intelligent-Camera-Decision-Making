@@ -5,6 +5,7 @@ import { IoCameraOutline } from "react-icons/io5";
 import { MdFileUpload } from "react-icons/md";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const PoliceResponse = ({
   detectionResult,
@@ -13,6 +14,7 @@ const PoliceResponse = ({
   errorDetecting,
   startObjectDetection,
 }) => {
+  const { t, i18n } = useTranslation();
   return (
     <div className="flex justify-around px-8 items-center h-[70%]">
       <div>
@@ -23,7 +25,7 @@ const PoliceResponse = ({
           </Link>
         </div>
         <div className="text-center">
-          <Button funcName={startObjectDetection} text="Camera" />
+          <Button funcName={startObjectDetection} text={t("CameraButton")} />
         </div>
       </div>
       <div className="flex flex-col items-center justify-center ">
@@ -31,7 +33,7 @@ const PoliceResponse = ({
           <MdFileUpload style={{ color: "white" }} size={140} />
         </div>
         <div className="text-center">
-          <Button text="Upload" />
+          <Button text={t("UploadButton")} />
         </div>
       </div>
     </div>

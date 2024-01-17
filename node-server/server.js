@@ -34,10 +34,6 @@ io.on("connection", (socket) => {
     console.log("Message from frontend:", message);
   });
 
-  socket.on("trafficDetection", (message) => {
-    console.log("Message From Traffic", message);
-  });
-
   socket.on("disconnect", () => {
     console.log("User disconnected");
   });
