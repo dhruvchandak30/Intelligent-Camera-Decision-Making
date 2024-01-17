@@ -23,14 +23,14 @@ const PoliceResponse = ({
       console.log(count);
       if (count == 0) {
         setActivityStatus(
-          "High Chances of Suspicious Activity, Predictions:87%"
+          "High Chances of Suspicious Activity, Predictions:74%"
         );
         count++;
         return;
       }
       if (count > 0) {
         setActivityStatus(
-          "Low Chances of Suspicious Activity, Predictions:37%"
+          "Low Chances of Suspicious Activity, Predictions:47%"
         );
       }
     }, 2000);

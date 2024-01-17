@@ -21,7 +21,7 @@
   "TrafficButton": "Traffic",
   "DetectButton": "Detect",
 
-  "SuspiciousDetection": " A suspecious object is detected ..",
+  "SuspiciousDetection": "Suspicious activity detected!\nConfirm if the detected emergence is an actual emergency or not.",
   "UploadButton": "Upload",
   "CameraButton": "Camera",
   "YesCheck": "Yes",

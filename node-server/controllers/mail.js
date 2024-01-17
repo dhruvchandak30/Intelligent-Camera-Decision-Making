@@ -20,7 +20,7 @@ const mail=(req,res)=>{
 
     const mailOptions = {
         from: 'krishnakhattri24@gmail.com',
-        to: "22ucs110@lnmiit.ac.in",
+        to: "dhruvchandak5@gmail.com",
         subject: sub,
         text: cont
       };

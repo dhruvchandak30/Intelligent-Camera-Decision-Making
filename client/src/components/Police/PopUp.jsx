@@ -25,7 +25,7 @@ const PopUp = ({ messages, yesHandler, status }) => {
     // Stop the audio after 5 seconds
     setTimeout(() => {
       audio.pause();
-    }, 5000);
+    }, 10000);
   };
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const PopUp = ({ messages, yesHandler, status }) => {
         {/* <img src={heo} alt="" className="h-full rounded-lg" /> */}
       </div>
       <div className="w-[70%] px-10  flex flex-col justify-around">
-        <p className="text-5xl text-white ">{t("SuspiciousDetection")}</p>
+        <p className="text-3xl text-white ">{t("SuspiciousDetection")}</p>
         <div className="text-white flex justify-around">
           <div
             className="flex gap-x-1 greenbutton justify-center items-center w-20 py-1 cursor-pointer"
