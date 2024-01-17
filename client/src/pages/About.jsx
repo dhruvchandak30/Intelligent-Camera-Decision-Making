@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div className='homebg'>
       <Navbar/>
-      <
+      
     </div>
   )
 }

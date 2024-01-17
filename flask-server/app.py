@@ -2,6 +2,7 @@
 from flask import Flask, jsonify, request
 from threading import Thread, Lock
 import detect
+import main
 from flask_cors import CORS
 
 
@@ -18,6 +19,7 @@ class DetectionData:
 
 detection_data = DetectionData()
 detection_thread = None  # Initialize the detection thread variable globally
+traffic_thread = None
 
 
 @app.route('/api/data', methods=['GET'])
@@ -59,6 +61,25 @@ def start_detection():
             return jsonify({"status": "Detection stopped"}), 200
         else:
             return jsonify({"status": "No detection running"}), 200
+    else:
+        return jsonify({"status": "Invalid message"}), 400
+
+
+@app.route('/start-traffic', methods=['POST'])
+def start_traffic():
+    global traffic_thread
+
+    message = request.json.get('message', '')
+    print(f"Received message: {message}")
+
+    if message == "Start":
+        if traffic_thread is None or not traffic_thread.is_alive():
+            traffic_thread = Thread(target=main.traffic)
+            traffic_thread.start()
+            print("Started")
+            return jsonify({"status": "Traffic Detection started"}), 200
+        else:
+            return jsonify({"status": "Traffic Detection already running"}), 200
     else:
         return jsonify({"status": "Invalid message"}), 400
 
