@@ -11,24 +11,11 @@ import { io } from "socket.io-client";
 function App() {
   const [loader, setLoader] = useState(true);
   const [isloggedin, setLoggedin] = useState(false);
-  const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([]);
 
-  const responseHandler = () => {
-    if (input === "YES") {
-      // Handle positive response
-    } else {
-      // Handle negative response
-    }
-  };
-
-  const aproveHandler = (e) => {
-    setInput(e);
-  };
-
-  useEffect(() => {
-    responseHandler();
-  }, [input]);
+  const [messages, setMessages] = useState({
+    img:"",
+    title:""
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,7 +34,11 @@ function App() {
     // Listen for the "messageFromServer" event from the server
     socket.on("messageFromServer", (message, image_url) => {
       console.log(message, image_url);
-      setMessages((prevMessages) => [...prevMessages, message]);
+      setMessages({
+        img:image_url,
+        title:message
+      })
+      // setMessages((prevMessages) => [...prevMessages, message]);
     });
 
     return () => {
