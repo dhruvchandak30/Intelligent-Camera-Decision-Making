@@ -19,15 +19,21 @@ const PoliceResponse = ({
   const [ActivityStatus, setActivityStatus] = useState("");
   useEffect(() => {});
   const CheckActivityDetection = () => {
-    console.log(count);
-    if (count == 0) {
-      setActivityStatus("High Chances of Suspicious Activity, Predictions:87%");
-      count++;
-      return;
-    }
-    if (count > 0) {
-      setActivityStatus("Low Chances of Suspicious Activity, Predictions:37%");
-    }
+    setTimeout(() => {
+      console.log(count);
+      if (count == 0) {
+        setActivityStatus(
+          "High Chances of Suspicious Activity, Predictions:87%"
+        );
+        count++;
+        return;
+      }
+      if (count > 0) {
+        setActivityStatus(
+          "Low Chances of Suspicious Activity, Predictions:37%"
+        );
+      }
+    }, 2000);
   };
   return (
     <div className="flex justify-around px-8 items-center h-[70%]">
@@ -46,6 +52,12 @@ const PoliceResponse = ({
         <div>
           <MdFileUpload style={{ color: "white" }} size={140} />
         </div>
+        <input
+          type="file"
+          id="myFile"
+          name="filename"
+          className="text-transparent bg-none"
+        ></input>
         <div className="text-center">
           <Button text={t("UploadButton")} funcName={CheckActivityDetection} />
         </div>
