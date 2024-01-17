@@ -11,8 +11,6 @@ const SHO=process.env.SHO;
 const client = twilio(accountSid, authToken);
 
 const notification = (req, res) => {
-  console.log(req.body);
-
   const response = req.body;
   // const message="hello message recieved"
 
@@ -33,6 +31,7 @@ const notification = (req, res) => {
       
     })
     .catch((error) => {
+      console.log(error);
       res.status(404).json({
         success: false,
         data: error.message,
