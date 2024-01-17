@@ -13,9 +13,18 @@ The Intelligent Camera Decision-Making System is designed to process video data,
 - Python 3
 - Tensorflow and Keras
 - OpenCV
-- NumPy, Pandas, Matplotlib
-- AWS or Google Cloud Platform account (for cloud services)
+- NumPy, Pandas
+- Transformers
+- NodeJS, React, APIs
 
+### Features
+- Object Detection - (Scissors, ScrewDrivers, Syringes, NailCutters etc.)
+- Suspicious Activity Detection like Digging and Jumping
+- Traffic Analysis
+- MultiLingual
+- Sends Notification to Authority if Detected
+- User Authentication
+  
 
 Usage
 The system provides real-time alerts for suspicious activities, incident reporting with video clips, and additional features such as traffic monitoring and people counting. Refer to the documentation for detailed usage instructions.
