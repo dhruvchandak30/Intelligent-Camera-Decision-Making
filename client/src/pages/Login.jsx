@@ -63,10 +63,10 @@ const Login = ({ handleSubmit, isloggedin }) => {
         <motion.div className="w-1/2 " {...divprop2}>
           <p className="text-gray-300 font-inter text-5xl font-medium leading-normal">
             A solution which{" "}
-            <span className="bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 bg-clip-text text-transparent font-inter text-5xl font-medium leading-normal">
+            <span className="bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-300 bg-clip-text text-transparent font-inter text-5xl font-medium leading-normal">
               saves
             </span>{" "}
-            <span className="bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300 bg-clip-text text-transparent font-inter text-5xl font-medium leading-normal">
+            <span className="bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-300 bg-clip-text text-transparent font-inter text-5xl font-medium leading-normal">
               lives
             </span>{" "}
             by connecting accident witnesses with emergency services.
