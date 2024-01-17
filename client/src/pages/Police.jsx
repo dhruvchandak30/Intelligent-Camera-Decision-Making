@@ -47,7 +47,7 @@ const Police = ({ status, messages ,yesHandler}) => {
         startObjectDetection={startObjectDetection}
         // startObjectDetection={startObjectDetection}
       />
-      {status ? <PopUp messages={messages} yesHandler={yesHandler} /> : null}
+      {status ? <PopUp status={status} messages={messages} yesHandler={yesHandler} /> : null}
     </div>
   );
 };
