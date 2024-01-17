@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,useNavigate } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import { useEffect, useState } from "react";
@@ -9,7 +9,9 @@ import Traffic from "./pages/Traffic";
 import PreLoader from "./components/preLoader/PreLoader";
 import { io } from "socket.io-client";
 
+
 function App() {
+  const nav=useNavigate()
   const [loader, setLoader] = useState(true);
   const [isloggedin, setLoggedin] = useState(false);
   const [status, setStatus] = useState(false);
@@ -34,9 +36,11 @@ function App() {
   };
 
   useEffect(() => {
+    nav("/login")
     setTimeout(() => {
       setLoader(false);
     }, 3000);
+
   }, []);
 
   const passData=async()=>{

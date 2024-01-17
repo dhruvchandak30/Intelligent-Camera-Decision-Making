@@ -22,13 +22,14 @@ const mail=(req,res)=>{
 
     const response=req.body
     console.log("hello");
-    const sub="Immediate Alert - Confirmed Suspicious Activity"
-    const cont=`Dear [Higher Authority's Name],\n\nI urgently report the detection of suspicious activity by our AI surveillance system. [Monitor's Name] has verified and marked the activity as confirmed, triggering an alarm in the designated.\nPlease find the attached suspicious image. area\n\nRegards\nTechnical Team\n\nLink:${response.img}
-    `;
+    const sub=response.sub
+    const cont=response.cont
+    console.log(sub,cont);
+
 
     const mailOptions = {
         from: 'krishnakhattri24@gmail.com',
-        to: response.to,
+        to: "dhruvchandak5@gmail.com",
         subject: sub,
         text: cont
       };
