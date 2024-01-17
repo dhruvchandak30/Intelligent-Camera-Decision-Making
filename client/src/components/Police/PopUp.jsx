@@ -5,11 +5,11 @@ import { ImCross } from "react-icons/im";
 
 import "./Police.css";
 
-const PopUp = ({ detect }) => {
+const PopUp = ({ messages }) => {
   return (
     <div className="rounded-3xl p-7 bg-gray-700 bg-opacity-55 w-[70%] h-[400px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex">
       <div className="w-[30%]">
-        <img src={heo} alt="" className="h-full rounded-lg" />
+        <img src={messages.img} alt="" className="h-full rounded-lg" />
       </div>
       <div className="w-[70%] px-10  flex flex-col justify-around">
         <p className="text-5xl text-white ">
