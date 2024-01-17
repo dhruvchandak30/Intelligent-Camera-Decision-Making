@@ -82,6 +82,7 @@ def run_detection():
                         # Check the response
                         if response.status_code == 200:
                             print('Image sent successfully:', response.json())
+                            break
                         else:
                             print('Error:', response.status_code, response.text)
 

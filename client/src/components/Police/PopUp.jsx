@@ -3,15 +3,13 @@ import heo from "../../assests/Hello.png";
 import { TiTick } from "react-icons/ti";
 import { ImCross } from "react-icons/im";
 import { useTranslation } from "react-i18next";
-import  { useRef } from 'react';
-
+import { useRef } from "react";
+import audioFile from "../../assests/buzzur.wav";
 
 import "./Police.css";
 
-const PopUp = ({ messages,yesHandler,status }) => {
-  
+const PopUp = ({ messages, yesHandler, status }) => {
   const { t, i18n } = useTranslation();
-
 
   const audioRef = useRef(null);
 
@@ -30,10 +28,9 @@ const PopUp = ({ messages,yesHandler,status }) => {
     }, 5000);
   };
 
-  useEffect(()=>{
-    if(status)
-    playAudio();
-  },[status])
+  useEffect(() => {
+    if (status) playAudio();
+  }, []);
 
   return (
     <div className="rounded-3xl p-7 bg-gray-700 bg-opacity-55 w-[70%] h-[400px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex">
@@ -60,7 +57,7 @@ const PopUp = ({ messages,yesHandler,status }) => {
           </div>
         </div>
       </div>
-      <audio ref={audioRef} src="../../assests/buzzur.wav"></audio>
+      <audio ref={audioRef} src={audioFile}></audio>
     </div>
   );
 };
