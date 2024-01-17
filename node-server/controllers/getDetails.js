@@ -1,6 +1,0 @@
-
-
-const getDetails=(img,title)=>{
-
-}
-
