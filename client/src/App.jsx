@@ -4,7 +4,8 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import { useEffect, useState } from "react";
 import Police from "./pages/Police";
-import Traffic from "./components/Traffic/Traffic";
+// import Traffic from "./components/Traffic/Traffic";
+import Traffic from "./pages/Traffic";
 import PreLoader from "./components/preLoader/PreLoader";
 import { io } from "socket.io-client";
 
@@ -41,15 +42,24 @@ function App() {
     }, 3000);
   }, []);
 
+  const sendTrafficData = (number) => {
+    const d = new Date();
+    let minutes = d.getMinutes();
+    let hours = d.getHours();
+    let dateString = hours + ":" + minutes;
+    console.log(dateString);
+  };
+
   useEffect(() => {
     const socket = io("http://localhost:8000");
-
-    // Listen for the "messageFromServer" event from the server
     socket.on("messageFromServer", (message, image_url) => {
       console.log(message, image_url);
       setMessages((prevMessages) => [...prevMessages, message]);
     });
-
+    socket.on("messageFromTraffic", (number) => {
+      console.log("Traffic on Server is ", number);
+      sendTrafficData(number);
+    });
     return () => {
       socket.disconnect();
     };
@@ -70,7 +80,6 @@ function App() {
         <Route path="/police" element={<Police />} />
         <Route path="/traffic" element={<Traffic />} />
       </Routes>
-
     </div>
   );
 }

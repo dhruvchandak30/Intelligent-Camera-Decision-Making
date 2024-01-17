@@ -34,6 +34,10 @@ io.on("connection", (socket) => {
     console.log("Message from frontend:", message);
   });
 
+  socket.on("trafficDetection", (message) => {
+    console.log("Message From Traffic", message);
+  });
+
   socket.on("disconnect", () => {
     console.log("User disconnected");
   });
@@ -44,6 +48,14 @@ app.post("/api/receiveImageChunk", (req, res) => {
   io.emit("messageFromServer", req.body.result, req.body.image_url);
   res.json({
     message: "Image received on the server",
+  });
+});
+
+app.post("/api/recieveTrafficNumber", (req, res) => {
+  console.log(req.body.number);
+  io.emit("messageFromTraffic", req.body.number);
+  res.json({
+    message: "Traffic Number received on the server",
   });
 });
 

@@ -1,4 +1,4 @@
- # detect.py
+# detect.py
 from transformers import ViTImageProcessor, ViTForImageClassification
 from PIL import Image as img
 import cv2
@@ -81,7 +81,7 @@ def run_detection():
 
                         # Check the response
                         if response.status_code == 200:
-                            print('Chunk sent successfully:', response.json())
+                            print('Image sent successfully:', response.json())
                         else:
                             print('Error:', response.status_code, response.text)
 
@@ -94,28 +94,28 @@ def run_detection():
     cv2.destroyAllWindows()
 
 
-def send_image_in_chunks(image_frame, result):
-    # Capture and encode the image in chunks
-    chunk_size = 1024  # Adjust the chunk size as needed
-    _, encoded_image = cv2.imencode('.png', image_frame)
+# def send_image_in_chunks(image_frame, result):
+#     # Capture and encode the image in chunks
+#     chunk_size = 1024  # Adjust the chunk size as needed
+#     _, encoded_image = cv2.imencode('.png', image_frame)
 
-    # Split the encoded image into chunks
-    for i in range(0, len(encoded_image), chunk_size):
-        chunk = encoded_image[i:i + chunk_size]
-        base64_encoded_chunk = base64.b64encode(chunk).decode('utf-8')
+#     # Split the encoded image into chunks
+#     for i in range(0, len(encoded_image), chunk_size):
+#         chunk = encoded_image[i:i + chunk_size]
+#         base64_encoded_chunk = base64.b64encode(chunk).decode('utf-8')
 
-        # Prepare the data to be sent in the POST request
-        body = {
-            'image_chunk': base64_encoded_chunk,
-            'result': result
-        }
+#         # Prepare the data to be sent in the POST request
+#         body = {
+#             'image_chunk': base64_encoded_chunk,
+#             'result': result
+#         }
 
-        # Send the POST request with the current chunk
-        url = 'http://localhost:8000/api/receiveImageChunk'
-        response = requests.post(url, json=body)
+#         # Send the POST request with the current chunk
+#         url = 'http://localhost:8000/api/receiveImageChunk'
+#         response = requests.post(url, json=body)
 
-        # Check the response
-        if response.status_code == 200:
-            print('Chunk sent successfully:', response.json())
-        else:
-            print('Error:', response.status_code, response.text)
+#         # Check the response
+#         if response.status_code == 200:
+#             print('Chunk sent successfully:', response.json())
+#         else:
+#             print('Error:', response.status_code, response.text)
