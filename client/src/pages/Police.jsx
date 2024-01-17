@@ -4,7 +4,7 @@ import Button from "../components/Button/Button";
 import Navbar from "../components/Navbar/Navbar";
 import PopUp from "../components/Police/PopUp";
 
-const Police = ({status,messages}) => {
+const Police = ({ status, messages }) => {
   const [detectionResult, setDetectionResult] = useState(null);
   const [data, setData] = useState("");
   const [imageData, setImageData] = useState(null);
@@ -46,9 +46,8 @@ const Police = ({status,messages}) => {
         errorDetecting={errorDetecting}
         startObjectDetection={startObjectDetection}
         // startObjectDetection={startObjectDetection}
-      
       />
-        {true ?<PopUp messages={messages}/>:null}
+      {status ? <PopUp messages={messages} /> : null}
     </div>
   );
 };

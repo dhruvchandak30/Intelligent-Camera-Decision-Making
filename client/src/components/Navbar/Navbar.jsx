@@ -24,6 +24,8 @@ const Navbar = () => {
       i18n.changeLanguage("en");
     } else if (lang === "Gujrati") {
       i18n.changeLanguage("guj");
+    } else if (lang === "Tamil") {
+      i18n.changeLanguage("ta");
     }
     toggleDropdown();
   };
@@ -113,6 +115,26 @@ const Navbar = () => {
                       className="mr-2"
                     />
                     ગુજરાતી - Gujrati
+                  </label>
+                  <label className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                    <input
+                      type="radio"
+                      value="Gujrati"
+                      onClick={() => changeLanguage("Tamil")}
+                      name="language"
+                      className="mr-2"
+                    />
+                    தமிழ் - Tamil
+                  </label>
+                  <label className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+                    <input
+                      type="radio"
+                      value="Gujrati"
+                      onClick={() => changeLanguage("Tamil")}
+                      name="language"
+                      className="mr-2"
+                    />
+                    తెలుగు - Telugu
                   </label>
                 </div>
               </div>

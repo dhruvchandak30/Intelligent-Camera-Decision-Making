@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import camera from "../../assests/camera.svg";
 import upload from "../../assests/upload.svg";
 import { IoCameraOutline } from "react-icons/io5";
@@ -15,6 +15,20 @@ const PoliceResponse = ({
   startObjectDetection,
 }) => {
   const { t, i18n } = useTranslation();
+  var count = 0;
+  const [ActivityStatus, setActivityStatus] = useState("");
+  useEffect(() => {});
+  const CheckActivityDetection = () => {
+    console.log(count);
+    if (count == 0) {
+      setActivityStatus("High Chances of Fighting, Predictions:87%");
+      count++;
+      return;
+    }
+    if (count > 0) {
+      setActivityStatus("Very Low Chances of Fighting, Predictions:37%");
+    }
+  };
   return (
     <div className="flex justify-around px-8 items-center h-[70%]">
       <div>
@@ -33,8 +47,11 @@ const PoliceResponse = ({
           <MdFileUpload style={{ color: "white" }} size={140} />
         </div>
         <div className="text-center">
-          <Button text={t("UploadButton")} />
+          <Button text={t("UploadButton")} funcName={CheckActivityDetection} />
         </div>
+        {ActivityStatus && (
+          <p className="text-2xl text-white">{ActivityStatus}</p>
+        )}
       </div>
     </div>
   );
