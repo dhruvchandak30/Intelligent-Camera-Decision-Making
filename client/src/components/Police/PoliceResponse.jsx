@@ -6,7 +6,6 @@ import { MdFileUpload } from "react-icons/md";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import {motion} from "framer-motion"
 
 const PoliceResponse = ({
   detectionResult,
@@ -15,32 +14,54 @@ const PoliceResponse = ({
   errorDetecting,
   startObjectDetection,
 }) => {
-  const animationProps = {
-    initial: { scale: 0 },
-    animate: { scale: 1 },
-    transition: { duration: 0.4 }, 
-  };
   const { t, i18n } = useTranslation();
-  var count = 0;
+
   const [ActivityStatus, setActivityStatus] = useState("");
-  useEffect(() => {});
-  const CheckActivityDetection = () => {
-    setTimeout(() => {
-      console.log(count);
-      if (count == 0) {
-        setActivityStatus(
-          "High Chances of Suspicious Activity, Predictions:74%"
-        );
-        count++;
-        return;
+  const [detectionResult, setDetectionResult] = useState(null);
+  const [errorDetecting, setErrorDetecting] = useState("");
+
+  useEffect(() => {
+    const socket = io("http://localhost:8000");
+
+    socket.on("messageFromActivity", (prediction) => {
+      console.log("ACtivity PRedictions on Frontend is  ", prediction);
+      if (prediction == "fights") {
+        setActivityStatus("Fighting Detected");
+      } else {
+        setActivityStatus("No Fighting Detected");
       }
-      if (count > 0) {
-        setActivityStatus(
-          "Low Chances of Suspicious Activity, Predictions:47%"
-        );
+    });
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
+  const CheckActivityDetection = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:5000/start-activity", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: "Start",
+        }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Start Object Detection", result.detection_result);
+        setDetectionResult(result.detection_result);
+      } else {
+        console.error("Failed to start object detection:", response.statusText);
+        setErrorDetecting("Failed to start object detection");
       }
-    }, 2000);
+    } catch (error) {
+      console.error("Error during object detection request:", error.message);
+      setErrorDetecting("Error during object Detection");
+    }
   };
+
   return (
     <div className="flex justify-around px-8 items-center h-[70%]">
       <motion.div {...animationProps}>

@@ -36,6 +36,8 @@ const Police = ({ status, messages ,yesHandler}) => {
     }
   };
 
+  
+
   return (
     <div className="homebg h-screen">
       <Navbar />
@@ -45,6 +47,7 @@ const Police = ({ status, messages ,yesHandler}) => {
         imageData={imageData}
         errorDetecting={errorDetecting}
         startObjectDetection={startObjectDetection}
+        // CheckActivityDetection={CheckActivityDetection}
         // startObjectDetection={startObjectDetection}
       />
       {status ? <PopUp status={status} messages={messages} yesHandler={yesHandler} /> : null}
