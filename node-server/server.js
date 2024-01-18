@@ -102,6 +102,14 @@ app.post("/api/recieveTrafficNumber", (req, res) => {
   });
 });
 
+app.post("/api/recieveActivityPrediction", (req, res) => {
+  console.log(req.body.prediction);
+  io.emit("messageFromActivity", req.body.prediction);
+  res.json({
+    message: "ACtivity predictions received on the server",
+  });
+});
+
 // Start the server
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
