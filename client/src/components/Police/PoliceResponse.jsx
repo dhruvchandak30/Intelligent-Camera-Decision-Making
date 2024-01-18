@@ -6,9 +6,14 @@ import { MdFileUpload } from "react-icons/md";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { io } from "socket.io-client";
 
-const PoliceResponse = ({ data, imageData, startObjectDetection }) => {
+const PoliceResponse = ({
+  detectionResult,
+  data,
+  imageData,
+  errorDetecting,
+  startObjectDetection,
+}) => {
   const { t, i18n } = useTranslation();
 
   const [ActivityStatus, setActivityStatus] = useState("");
@@ -59,8 +64,8 @@ const PoliceResponse = ({ data, imageData, startObjectDetection }) => {
 
   return (
     <div className="flex justify-around px-8 items-center h-[70%]">
-      <div>
-        <div className="flex flex-col items-center justify-center ">
+      <motion.div {...animationProps}>
+        <div className="flex flex-col items-center justify-center" >
           <Link to="/">
             {" "}
             <IoCameraOutline style={{ color: "white" }} size={140} />
@@ -69,8 +74,8 @@ const PoliceResponse = ({ data, imageData, startObjectDetection }) => {
         <div className="text-center">
           <Button funcName={startObjectDetection} text={t("CameraButton")} />
         </div>
-      </div>
-      <div className="flex flex-col items-center justify-center ">
+      </motion.div>
+      <motion.div className="flex flex-col items-center justify-center" {...animationProps}>
         <div>
           <MdFileUpload style={{ color: "white" }} size={140} />
         </div>
@@ -86,7 +91,7 @@ const PoliceResponse = ({ data, imageData, startObjectDetection }) => {
         {ActivityStatus && (
           <p className="text-2xl text-white">{ActivityStatus}</p>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 };
