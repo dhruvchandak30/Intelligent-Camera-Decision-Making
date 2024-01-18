@@ -6,16 +6,26 @@ import { MdFileUpload } from "react-icons/md";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import {motion} from "framer-motion"
+import { io } from "socket.io-client";
 
-const PoliceResponse = ({
-  detectionResult,
-  data,
-  imageData,
-  errorDetecting,
-  startObjectDetection,
-}) => {
+
+// const PoliceResponse = ({
+//   detectionResult,
+//   data,
+//   imageData,
+//   errorDetecting,
+//   startObjectDetection,
+// }) => {
+ 
+
+const PoliceResponse = ({ data, imageData, startObjectDetection }) => {
   const { t, i18n } = useTranslation();
-
+  const animationProps = {
+    initial: { scale: 0 },
+    animate: { scale: 1 },
+    transition: { duration: 0.4 }, 
+  };
   const [ActivityStatus, setActivityStatus] = useState("");
   const [detectionResult, setDetectionResult] = useState(null);
   const [errorDetecting, setErrorDetecting] = useState("");
